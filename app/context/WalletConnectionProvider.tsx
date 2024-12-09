@@ -9,8 +9,14 @@ import {
 } from '@solana/wallet-adapter-react-ui';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
+import NetworkSelector from '@/components/NetworkSelector';
+import { useNetwork } from './NetworkContext';
 
+type Network = 'devnet' | 'testnet' | 'mainnet-beta'
 
+interface WalletConnectionProviderProps {
+  children: React.ReactNode
+}
 
 interface WalletConnectionProviderProps {
   children: React.ReactNode;
@@ -19,25 +25,22 @@ interface WalletConnectionProviderProps {
 const WalletConnectionProvider: FC<WalletConnectionProviderProps> = ({
   children
 }) => {
-  const [network, setNetwork] = useState<Network>('devnet')
+  const {currentNetwork}= useNetwork()
 
   const endpoint = useMemo(() => {
-    switch (network) {
+    switch (currentNetwork) {
       case 'devnet':
         return process.env.NEXT_PUBLIC_DEVNET_URL
-      case 'testnet':
-        return process.env.NEXT_PUBLIC_TESTNET_URL
       case 'mainnet-beta':
         return process.env.NEXT_PUBLIC_MAINNET_URL
       default:
         return process.env.NEXT_PUBLIC_DEVNET_URL
     }
-  }, [network])
+  }, [currentNetwork])
   return (
     <ConnectionProvider endpoint={endpoint as string}>
             <WalletProvider wallets={[]} autoConnect>
                 <WalletModalProvider>
-                <NetworkSelector onNetworkChange={setNetwork} />
                   {children }
                 </WalletModalProvider>
             </WalletProvider>

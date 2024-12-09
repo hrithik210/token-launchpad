@@ -26,9 +26,9 @@ export default function TokenLaunchpad() {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const[description, setDescription] = useState("");
 
   const { connection } = useConnection();
+  console.log('Current Connection:', connection.rpcEndpoint);
   
   const wallet = useWallet();
 
@@ -201,7 +201,7 @@ export default function TokenLaunchpad() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 bg-gray-900 min-h-screen">
+    <div className="w-full max-w-2xl mx-auto p-4 min-h-screen">
       <div className="flex items-center justify-center flex-col mb-6">
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-teal-100">Create Token</h2>
         <p className="text-gray-400 text-center">Launch your own Token on Solana</p>
