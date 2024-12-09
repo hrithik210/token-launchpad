@@ -1,15 +1,12 @@
 "use client";
 
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
+
 import {
     WalletModalProvider,
-    WalletDisconnectButton,
-    WalletMultiButton
+
 } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 
@@ -22,10 +19,25 @@ interface WalletConnectionProviderProps {
 const WalletConnectionProvider: FC<WalletConnectionProviderProps> = ({
   children
 }) => {
+  const [network, setNetwork] = useState<Network>('devnet')
+
+  const endpoint = useMemo(() => {
+    switch (network) {
+      case 'devnet':
+        return process.env.NEXT_PUBLIC_DEVNET_URL
+      case 'testnet':
+        return process.env.NEXT_PUBLIC_TESTNET_URL
+      case 'mainnet-beta':
+        return process.env.NEXT_PUBLIC_MAINNET_URL
+      default:
+        return process.env.NEXT_PUBLIC_DEVNET_URL
+    }
+  }, [network])
   return (
-    <ConnectionProvider endpoint={process.env.NEXT_PUBLIC_DEVNET_URL as string}>
+    <ConnectionProvider endpoint={endpoint as string}>
             <WalletProvider wallets={[]} autoConnect>
                 <WalletModalProvider>
+                <NetworkSelector onNetworkChange={setNetwork} />
                   {children }
                 </WalletModalProvider>
             </WalletProvider>
