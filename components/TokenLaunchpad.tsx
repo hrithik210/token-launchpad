@@ -26,9 +26,9 @@ export default function TokenLaunchpad() {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const[mintAddress , setMintAddress] = useState("");
 
   const { connection } = useConnection();
-  console.log('Current Connection:', connection.rpcEndpoint);
   
   const wallet = useWallet();
 
@@ -98,6 +98,7 @@ export default function TokenLaunchpad() {
 
       try {
           const mintKeypair = Keypair.generate();
+          setMintAddress(mintKeypair.publicKey.toBase58());
           
           const baseMetadata = {
             mint: mintKeypair.publicKey,
@@ -218,8 +219,27 @@ export default function TokenLaunchpad() {
           {success}
         </div>
       )}
-
-      <div className="space-y-4">
+      {success && mintAddress && (
+            <div className="bg-gray-800 border border-gray-600 p-3 rounded-lg mb-4 text-center mt-5">
+              <p className="text-gray-300">Mint Address:</p>
+              <textarea
+                className="w-full bg-gray-900 text-white p-2 rounded-lg mt-2"
+                rows={2}
+                readOnly
+                value={mintAddress}
+              />
+              <a
+                href={`https://explorer.solana.com/address/${mintAddress}?cluster=devnet`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-400 hover:underline mt-2 block"
+              >
+                View on Solana Explorer
+              </a>
+            </div>
+      )}
+       
+    <div className="space-y-4">
         <div>
           <label className="block text-gray-300 mb-2">Token Name *</label>
           <input
