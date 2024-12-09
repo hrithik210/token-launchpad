@@ -27,6 +27,7 @@ export default function TokenLaunchpad() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const[mintAddress , setMintAddress] = useState("");
+  const[description, setDescritpion] = useState("");
 
   const { connection } = useConnection();
   
@@ -46,7 +47,7 @@ export default function TokenLaunchpad() {
       const tokenMetadata = {
           name: metadata.name,
           symbol: metadata.symbol,
-          description: "This is an example fungible token for demonstration purposes.",
+          description: description,
           image: imageUrl,
       };
   
@@ -284,6 +285,18 @@ export default function TokenLaunchpad() {
             className="w-full px-4 py-2 bg-white/10 rounded-lg border border-gray-600 focus:border-teal-400 focus:outline-none text-white"
             value={initialSupply}
             onChange={(e) => setInitialSupply(Number(e.target.value))}
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-300 mb-2">Description</label>
+          <input
+            type="text"
+            placeholder="Token description"
+            className="w-full px-4 py-2 bg-white/10 rounded-lg border border-gray-600 focus:border-teal-400 focus:outline-none text-white"
+            value={description}
+            onChange={(e) => setDescritpion(e.target.value)}
+            required
           />
         </div>
 
