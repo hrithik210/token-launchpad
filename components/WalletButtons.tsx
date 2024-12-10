@@ -16,7 +16,7 @@ const WalletButtons = () => {
   }
   return (
     <div className="flex justify-between p-5 ">
-      <div className="flex gap-x-52">
+      <div className="flex gap-x-5">
         <WalletMultiButton/>
         <WalletDisconnectButton />
       </div>
