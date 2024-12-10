@@ -36,8 +36,8 @@ export default function TokenLaunchpad() {
 
   async function uploadMetadataToIPFS(metadata : any) {
       
-      const PINATA_API_KEY = "ac9dd8d7c038835e4721";
-      const PINATA_SECRET_KEY = "5effa5571c75fdcbb3a8f5857a5f0aee33ac0c9781224f7ce136509535e4e3a3";
+      const PINATA_API_KEY = process.env.NEXT_PUBLIC_PINATA_API_KEY;
+      const PINATA_SECRET_KEY = process.env.NEXT_PUBLIC_PINATA_SECRET_KEY;
   
       if (!PINATA_API_KEY || !PINATA_SECRET_KEY) {
         throw new Error("IPFS upload credentials not configured");
