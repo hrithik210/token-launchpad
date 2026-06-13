@@ -1,12 +1,17 @@
+import Navbar from "@/components/landing/Navbar";
+import Hero from "@/components/landing/Hero";
+import Footer from "@/components/landing/Footer";
 
-import TokenLaunchpad from "@/components/TokenLaunchpad";
-import WalletButtons from "@/components/WalletButtons";
-
+// One-pager landing. The token-creation app lives at /launch; the single CTA
+// routes there.
 export default function Home() {
   return (
-    <div>
-      <WalletButtons />
-      <TokenLaunchpad />
+    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-50">
+      <Navbar />
+      <main>
+        <Hero />
+      </main>
+      <Footer />
     </div>
   );
 }
