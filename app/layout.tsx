@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import WalletConnectionProvider from "./context/WalletConnectionProvider";
@@ -33,6 +33,10 @@ export const metadata: Metadata = {
     description:
       "Create and mint your own SPL token on Solana. No code, just your wallet.",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
