@@ -18,3 +18,11 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) for the landing page, or
 [http://localhost:3000/launch](http://localhost:3000/launch) to create a token.
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) (App Router) + TypeScript
+- [Tailwind CSS](https://tailwindcss.com)
+- [Solana web3.js](https://solana.com/docs) and SPL Token
+- [Solana Wallet Adapter](https://github.com/anza-xyz/wallet-adapter)
+- [Metaplex Token Metadata](https://developers.metaplex.com/token-metadata)
