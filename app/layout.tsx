@@ -17,6 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://token-launchpad.vercel.app"),
   title: "Token Launchpad — Launch your own token on Solana in minutes",
   description:
     "Create, configure, and mint your own SPL token on Solana — no code required. Connect your wallet and go live on devnet or mainnet in minutes.",
