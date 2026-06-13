@@ -17,8 +17,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "token-launchpad",
-  description: "A token launchpad",
+  title: "Token Launchpad — Launch your own token on Solana in minutes",
+  description:
+    "Create, configure, and mint your own SPL token on Solana — no code required. Connect your wallet and go live on devnet or mainnet in minutes.",
 };
 
 export default function RootLayout({
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0a0a]`}
       > 
       
       <NetworkProvider>
